@@ -3,15 +3,8 @@ import 'package:get/instance_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:my_portofolio_flutter/controllers/home_controller.dart';
-import 'package:flutter/services.dart' show rootBundle;
-import 'package:path_provider/path_provider.dart';
-import 'package:share_plus/share_plus.dart';
-import 'dart:io';
 import 'dart:html' as html;
 import 'package:flutter/foundation.dart'; // For kIsWeb
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class BodySection extends StatelessWidget {
@@ -28,9 +21,9 @@ class BodySection extends StatelessWidget {
           ? Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                CircleAvatar(
+                const CircleAvatar(
                   radius: 100,
-                  backgroundImage: AssetImage('assets/your_photo.jpg'),
+                  backgroundImage: AssetImage('assets/your_photo.png'),
                 ),
                 const SizedBox(height: 24),
                 buildTextSection(context, isMobile),
@@ -47,9 +40,27 @@ class BodySection extends StatelessWidget {
                 Expanded(
                   flex: 1,
                   child: Center(
-                    child: CircleAvatar(
-                      radius: 140,
-                      backgroundImage: AssetImage('assets/your_photo.jpg'),
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 16.0),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.all(Radius.circular(24)),
+                        child: SizedBox(
+                
+                          child: Card(
+                            elevation: 4,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(24)),
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.all(Radius.circular(24)),
+                              child: Image.asset(
+                                'assets/your_photo.png',
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -106,17 +117,17 @@ class BodySection extends StatelessWidget {
                 color: Colors.black,
                 fontWeight: FontWeight.w300,
               ),
-              children: [
-                const TextSpan(text: 'Experienced in crafting '),
-                const TextSpan(
+              children: const [
+                TextSpan(text: 'Experienced in crafting '),
+                TextSpan(
                     text: 'mobile apps ',
                     style: TextStyle(fontWeight: FontWeight.bold)),
-                const TextSpan(text: 'that deliver performance and design. '),
-                const TextSpan(text: 'I build apps that deliver '),
-                const TextSpan(
+                TextSpan(text: 'that deliver performance and design. '),
+                TextSpan(text: 'I build apps that deliver '),
+                TextSpan(
                     text: 'performance ',
                     style: TextStyle(fontWeight: FontWeight.bold)),
-                const TextSpan(text: 'and seamless user experience.'),
+                TextSpan(text: 'and seamless user experience.'),
               ],
             ),
           ),
@@ -241,7 +252,7 @@ class BodySection extends StatelessWidget {
 }
 
 void downloadFileWeb() {
-  const url = 'assets/your_photo.jpg';
+  const url = 'assets/your_photo.png';
   // ignore: unused_local_variable
   final anchor = html.AnchorElement(href: url)
     ..setAttribute('download', 'cv.pdf')

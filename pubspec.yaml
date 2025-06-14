@@ -39,6 +39,11 @@ dependencies:
   flutter_iconify: ^0.0.3
   share_plus: ^7.0.0
   path_provider: ^2.0.11
+  animate_do: ^3.0.2
+  visibility_detector: ^0.4.0+2
+  animated_text_kit: ^4.2.2
+
+
 
 
   # The following adds the Cupertino Icons font to your application.

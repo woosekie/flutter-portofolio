@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:simple_icons/simple_icons.dart';
 
 class ExperienceSection extends StatelessWidget {
-    ExperienceSection({super.key});
+  ExperienceSection({super.key});
 
   final List<ExperienceItem> experiences = [
     ExperienceItem(
@@ -36,8 +36,9 @@ class ExperienceSection extends StatelessWidget {
     Technology(name: 'Firebase', icon: SimpleIcons.firebase),
     Technology(name: 'Git', icon: SimpleIcons.git),
     Technology(name: 'Figma', icon: SimpleIcons.figma),
+    Technology(name: 'Postman', icon: SimpleIcons.postman),
+    Technology(name: 'JSON', icon: SimpleIcons.json),
   ];
-
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +73,7 @@ class ExperienceSection extends StatelessWidget {
                   ],
                 )
               : Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Expanded(flex: 5, child: _buildExperienceCard()),
                     const SizedBox(width: 32),
@@ -151,7 +152,7 @@ class _ExperienceTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-        final isMobile = MediaQuery.of(context).size.width < 900;
+    final isMobile = MediaQuery.of(context).size.width < 900;
 
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -161,7 +162,7 @@ class _ExperienceTile extends StatelessWidget {
           children: [
             if (!isFirst)
               Container(
-                height:  isMobile ? 7 : 8,
+                height: isMobile ? 7 : 8,
                 width: 2,
                 color: Colors.orange,
               ),
@@ -175,7 +176,7 @@ class _ExperienceTile extends StatelessWidget {
             ),
             if (!isLast)
               Container(
-                height:  isMobile ? 112 : 90,
+                height: isMobile ? 112 : 90,
                 width: 2,
                 color: Colors.orange,
               ),
@@ -220,7 +221,6 @@ class _ExperienceTile extends StatelessWidget {
                   textAlign: TextAlign.justify,
                 ),
               ),
-              const SizedBox(height: 16),
             ],
           ),
         ),
@@ -244,7 +244,7 @@ class _TechnologyCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 120,
+      width: 100,
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -262,7 +262,7 @@ class _TechnologyCard extends StatelessWidget {
         children: [
           Icon(
             tech.icon,
-            size: 30,
+            size: 28,
             color: Colors.black,
           ),
           const SizedBox(height: 12),
@@ -270,7 +270,8 @@ class _TechnologyCard extends StatelessWidget {
             tech.name,
             style: GoogleFonts.poppins(
               fontSize: 14,
-              color: Colors.black87,
+              color: Colors.black,
+              fontWeight: FontWeight.w400
             ),
             textAlign: TextAlign.center,
           ),
