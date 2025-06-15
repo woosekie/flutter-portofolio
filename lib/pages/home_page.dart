@@ -17,45 +17,67 @@ class HomePage extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isMobile = screenWidth <= 760; 
     return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-  colors: [
-    Color(0xFFFFFFFF), // white
-    Color(0xFFFFE0B2), // light orange (Material Orange 100)
-  ],
-  begin: Alignment.topCenter,
-  end: Alignment.topLeft,
-)
+      body: Obx(() {
+        if (controller.isLoading.value) {
+          return const Center(
+            child: CircularProgressIndicator(
+              color: Colors.orange,
+            ),
+          );
+        }
 
-        ),
-        child: SingleChildScrollView(
-          controller: controller.scrollController,
-          child: Column(
+        return Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color(0xFFFFFFFF),
+                Color(0xFFFFE0B2),
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.topLeft,
+            ),
+          ),
+          child: Stack(
             children: [
-              const HeaderSection(),
-              // const Divider(color: Colors.black12, thickness: 1, height: 8),
-              FadeInUp(child: BodySection()),
-              FadeOnScroll(child: AboutSection(key: controller.aboutKey)),
-              FadeOnScroll(
-                  child: ExperienceSection(key: controller.experienceKey)),
-              FadeOnScroll(child: ProjectSection(key: controller.projectKey)),
-              FadeOnScroll(child: ContactSection(key: controller.contactKey)),
               Padding(
-                padding: const EdgeInsets.only(bottom: 24),
-                child: Text(
-                  'managed by nanda',
-                  style: GoogleFonts.pacifico(fontSize: 14),
+                padding: isMobile ? const EdgeInsets.only(top: 104) : const EdgeInsets.only(top: 80),
+                child: SingleChildScrollView(
+                  controller: controller.scrollController,
+                  child: Column(
+                    children: [
+                      FadeInUp(child: BodySection()),
+                      FadeOnScroll(child: AboutSection(key: controller.aboutKey)),
+                      FadeOnScroll(child: ExperienceSection(key: controller.experienceKey)),
+                      FadeOnScroll(child: ProjectSection(key: controller.projectKey)),
+                      FadeOnScroll(child: ContactSection(key: controller.contactKey)),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 24),
+                        child: Text(
+                          'managed by rizky',
+                          style: GoogleFonts.pacifico(fontSize: 14),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
+              ),
+              const Positioned(
+                top: 0,
+                left: 0,
+                right: 0,
+                child: HeaderSection(),
               ),
             ],
           ),
-        ),
-      ),
+        );
+      }),
     );
   }
 }
+
 
 class FadeOnScroll extends StatefulWidget {
   final Widget child;

@@ -48,7 +48,6 @@ class ExperienceSection extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 48, vertical: 48),
       child: Column(
         children: [
-          // Header
           Text(
             'Explore my',
             style: GoogleFonts.poppins(fontSize: 16),
@@ -63,7 +62,6 @@ class ExperienceSection extends StatelessWidget {
           ),
           const SizedBox(height: 24),
 
-          // Responsive Layout
           isMobile
               ? Column(
                   children: [
@@ -152,17 +150,17 @@ class _ExperienceTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isMobile = MediaQuery.of(context).size.width < 900;
+    final isMobile = MediaQuery.of(context).size.width < 900 && MediaQuery.of(context).size.width >= 470;
+    final isSmaller = MediaQuery.of(context).size.width < 470;
 
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Timeline visual
         Column(
           children: [
             if (!isFirst)
               Container(
-                height: isMobile ? 7 : 8,
+                height: isMobile ? 7: isSmaller ? 6 : 8,
                 width: 2,
                 color: Colors.orange,
               ),
@@ -176,14 +174,13 @@ class _ExperienceTile extends StatelessWidget {
             ),
             if (!isLast)
               Container(
-                height: isMobile ? 112 : 90,
+                height: isMobile ? 112 : isSmaller ? 154 : 90,
                 width: 2,
                 color: Colors.orange,
               ),
           ],
         ),
         const SizedBox(width: 16),
-        // Content
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -195,7 +192,7 @@ class _ExperienceTile extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   color: Colors.black87,
                 ),
-                maxLines: 1,
+                maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
               Text(
@@ -204,7 +201,7 @@ class _ExperienceTile extends StatelessWidget {
                   fontSize: 14,
                   color: Colors.black54,
                 ),
-                maxLines: 1,
+                maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
               const SizedBox(height: 4),
@@ -216,7 +213,7 @@ class _ExperienceTile extends StatelessWidget {
                     fontSize: 14,
                     color: Colors.black87,
                   ),
-                  maxLines: 3,
+                  maxLines: 4,
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.justify,
                 ),

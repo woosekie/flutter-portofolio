@@ -37,7 +37,7 @@ class ContactSection extends StatelessWidget {
               ContactItem(
                 icon: Icons.email,
                 label: 'Email',
-                url: 'mailto:your.rizkynuansa2@gmail.com',
+                url: 'mailto:rizkynuansa2@gmail.com',
               ),
               ContactItem(
                 icon: FontAwesomeIcons.whatsapp,

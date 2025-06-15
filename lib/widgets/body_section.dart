@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:my_portofolio_flutter/controllers/home_controller.dart';
 import 'dart:html' as html;
-import 'package:flutter/foundation.dart'; // For kIsWeb
+import 'package:flutter/foundation.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class BodySection extends StatelessWidget {
@@ -13,7 +13,7 @@ class BodySection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    final isMobile = screenWidth <= 760; // breakpoint: 600px
+    final isMobile = screenWidth <= 760;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 48, vertical: 24),
@@ -23,7 +23,7 @@ class BodySection extends StatelessWidget {
               children: [
                 const CircleAvatar(
                   radius: 100,
-                  backgroundImage: AssetImage('assets/your_photo.png'),
+                  backgroundImage: AssetImage('assets/my_photos.png'),
                 ),
                 const SizedBox(height: 24),
                 buildTextSection(context, isMobile),
@@ -45,16 +45,17 @@ class BodySection extends StatelessWidget {
                       child: ClipRRect(
                         borderRadius: BorderRadius.all(Radius.circular(24)),
                         child: SizedBox(
-                
                           child: Card(
                             elevation: 4,
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(24)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(24)),
                             ),
                             child: ClipRRect(
-                              borderRadius: BorderRadius.all(Radius.circular(24)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(24)),
                               child: Image.asset(
-                                'assets/your_photo.png',
+                                'assets/my_photos.png',
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -75,7 +76,7 @@ class BodySection extends StatelessWidget {
           isMobile ? CrossAxisAlignment.center : CrossAxisAlignment.start,
       children: [
         Text(
-          'Nanda Permana',
+          'Rizky Nuansa',
           style: GoogleFonts.poppins(
             fontSize: 36,
             fontWeight: FontWeight.w600,
@@ -133,9 +134,10 @@ class BodySection extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 24),
-        Row(
-          mainAxisAlignment:
-              isMobile ? MainAxisAlignment.center : MainAxisAlignment.start,
+        Wrap(
+          spacing: 32,
+          runSpacing: 16,
+          alignment: isMobile ? WrapAlignment.center : WrapAlignment.start,
           children: [
             Column(
               crossAxisAlignment: isMobile
@@ -155,7 +157,6 @@ class BodySection extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(width: 32),
             Column(
               crossAxisAlignment: isMobile
                   ? CrossAxisAlignment.center
@@ -252,8 +253,7 @@ class BodySection extends StatelessWidget {
 }
 
 void downloadFileWeb() {
-  const url = 'assets/your_photo.png';
-  // ignore: unused_local_variable
+  const url = 'assets/my-cv.pdf';
   final anchor = html.AnchorElement(href: url)
     ..setAttribute('download', 'cv.pdf')
     ..click();

@@ -10,94 +10,85 @@ class HeaderSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.find<HomeController>();
     final screenWidth = MediaQuery.of(context).size.width;
-    final isMobile = screenWidth <= 760; // breakpoint: 600px
+    final isMobile = screenWidth <= 760;
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 48, vertical: 24),
       child: LayoutBuilder(
         builder: (context, constraints) {
           return isMobile
-              ? Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    // Left: Title
-                    Text(
-                      'Portofolio',
+              ? Wrap(
+  alignment: WrapAlignment.spaceBetween,
+  crossAxisAlignment: WrapCrossAlignment.center,
+  runSpacing: 12,
+  spacing: 16,
+  children: [
+    Text(
+      'Portofolio',
+      style: GoogleFonts.poppins(
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+        color: Colors.black87,
+      ),
+    ),
+    Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        border: Border.all(color: Colors.black12),
+        borderRadius: BorderRadius.circular(8),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black12.withOpacity(0.1),
+            blurRadius: 6,
+            offset: const Offset(0, 3),
+          ),
+        ],
+      ),
+      child: DropdownButtonHideUnderline(
+        child: DropdownButton<String>(
+          hint: Text(
+            'Menu',
+            style: GoogleFonts.poppins(
+              fontSize: 14,
+              color: Colors.black,
+              fontWeight: FontWeight.w300,
+            ),
+          ),
+          icon: const Icon(Icons.keyboard_arrow_down_rounded),
+          onChanged: (value) {
+            switch (value) {
+              case 'About':
+                controller.scrollToSection(controller.aboutKey);
+                break;
+              case 'Experience':
+                controller.scrollToSection(controller.experienceKey);
+                break;
+              case 'Project':
+                controller.scrollToSection(controller.projectKey);
+                break;
+              case 'Contact':
+                controller.scrollToSection(controller.contactKey);
+                break;
+            }
+          },
+          items: <String>['About', 'Experience', 'Project', 'Contact']
+              .map((item) => DropdownMenuItem(
+                    value: item,
+                    child: Text(
+                      item,
                       style: GoogleFonts.poppins(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black87,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w300,
                       ),
                     ),
-
-                    // Right: Modern Styled Dropdown
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 12, vertical: 4),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(color: Colors.black12),
-                        borderRadius: BorderRadius.circular(8),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black12.withOpacity(0.1),
-                            blurRadius: 6,
-                            offset: const Offset(0, 3),
-                          ),
-                        ],
-                      ),
-                      child: DropdownButtonHideUnderline(
-                        child: DropdownButton<String>(
-                          hint: Text(
-                            'Menu',
-                            style: GoogleFonts.poppins(
-                              fontSize: 14,
-                              color: Colors.black,
-                              fontWeight: FontWeight.w300,
-                            ),
-                          ),
-                          icon: const Icon(Icons.keyboard_arrow_down_rounded),
-                          onChanged: (value) {
-                            switch (value) {
-                              case 'About':
-                                controller.scrollToSection(controller.aboutKey);
-                                break;
-                              case 'Experience':
-                                controller
-                                    .scrollToSection(controller.experienceKey);
-                                break;
-                              case 'Project':
-                                controller
-                                    .scrollToSection(controller.projectKey);
-                                break;
-                              case 'Contact':
-                                controller
-                                    .scrollToSection(controller.contactKey);
-                                break;
-                            }
-                          },
-                          items: <String>[
-                            'About',
-                            'Experience',
-                            'Project',
-                            'Contact'
-                          ]
-                              .map((item) => DropdownMenuItem(
-                                    value: item,
-                                    child: Text(
-                                      item,
-                                      style: GoogleFonts.poppins(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w300,
-                                      ),
-                                    ),
-                                  ))
-                              .toList(),
-                        ),
-                      ),
-                    ),
-                  ],
-                )
+                  ))
+              .toList(),
+        ),
+      ),
+    ),
+  ],
+)
               : Row(
                   children: [
                     Text(

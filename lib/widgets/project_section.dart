@@ -130,7 +130,6 @@ class ProjectCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // 👇 Gambar Preview
           ClipRRect(
               borderRadius:
                   const BorderRadius.vertical(top: Radius.circular(12)),
