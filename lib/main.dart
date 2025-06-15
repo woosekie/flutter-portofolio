@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'My Portfolio',
+      title: 'Rizky’s Portofolio',
       initialRoute: AppRoutes.home,
       getPages: AppPages.routes,
     );
