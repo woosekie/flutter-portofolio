@@ -253,11 +253,12 @@ class BodySection extends StatelessWidget {
 }
 
 void downloadFileWeb() {
-  const url = 'assets/my-cv.pdf';
+  const url = 'my-cv.pdf'; 
   final anchor = html.AnchorElement(href: url)
     ..setAttribute('download', 'cv.pdf')
     ..click();
 }
+
 
 void _launchURL(String url) async {
   final uri = Uri.parse(url);
